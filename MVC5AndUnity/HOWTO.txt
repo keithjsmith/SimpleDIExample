@@ -1,0 +1,48 @@
+﻿Create new project MVC5AndUnity
+
+Copy TwoTierMVCReview.DAL folder into the MVC5AndUnity folder
+Add existing project, reference to DAL and move connection
+	string from  DAL app.config to MVC5AndUnity web.config
+
+Install Unity.MVC NuGet package to MVC5AndUnity project
+
+Look at UnityConfig, we manually performed these steps in
+	the Program.cs of our CSharpAndUnity project
+
+Look at UnityMvcActivator, discuss Dispose method
+
+Discuss need for a parent Generic Repository and how making
+	an interface will help with abstraction
+Create IGenericRepository parent class
+Create Generic Repository that implements the IGenericRepository
+	add field and ctor first
+	Update the various methods behaviors
+	Update the Dispose method and comments
+
+Create specific WGProductRepository class
+
+Build WGProduct Controller with views
+Delete the Create, Delete, and Edit views
+	We won't be building those
+Update the Index View to have no links to create, edit, delete
+
+Version 1:
+Add _repo field and ctor insantiating it with WGProductRepository instance
+Update Dispose method
+Update Index Action
+Update Details Action
+
+This should run at this time.
+
+Version 2:
+Convert the WGproductsController Index action to use the IWGProductRepository
+	instead of WGProductRepository
+Code won't run now!
+
+Go to UnityConfig.cs and add RegisterType
+Code runs again!
+
+Add InStockWGproductRepository with comments and mappings
+	back using connectedsql
+Change the UnityConfig Registration to use the new Repository
+	for dependency injection
